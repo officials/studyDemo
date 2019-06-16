@@ -413,7 +413,7 @@ factorial(5); //120
 
 /**
  * es2017允许函数的最后一个参数有尾逗号
- * 
+ * 方便函数的扩展
  */
 function clownsEverywhere(
     param1,
