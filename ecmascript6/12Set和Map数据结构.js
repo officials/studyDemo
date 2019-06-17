@@ -89,3 +89,89 @@ console.log(Array.from(set)); //[2, 3, 4]
  * entries():返回键值对的遍历器
  * forEach():使用回调函数遍历每个成员
  */
+let set = new Set(['red', 'green', 'blue']);
+for (let key of set.keys()) {
+    console.log(ket);// red green blue
+};
+//由于Set解构没有键名，只有键值，所以keys()方法和values()方法一致
+for (let item of set.values()) {
+    console.log(item);
+};
+// red
+// green
+// blue
+for (let item of set.entries()) {
+    console.log(item);
+}
+// ["red", "red"]
+// ["green", "green"]
+// ["blue", "blue"]
+
+/**
+ * Set解构的实例默认可遍历，默认遍历器就是他的values()方法
+ */
+Set.prototype.values === Set[Symbol.iterator] //true
+//这就意味着，可以省略values()方法，使用for of就可以
+let set = new Set(['red', 'green', 'blue']);
+for (let x of set) {
+    console.log(x);
+}
+// red
+// green
+// blue
+
+/**
+ * forEach()
+ * 与普通数组一样，Set解构也有forEach方法
+ */
+Set.prototype.forEach === Array.prototype.forEach //false
+//无意义，因为都是挂载到了不用的对象上
+let set = new Set([1, 4, 9]);
+set.forEach((value, key) => console.log(key + ':' + value));
+// 1 : 1
+// 4 : 4
+// 9 : 9
+
+/**
+ * 扩展运算符也可以遍历Set结构
+ */
+let set = new Set(['red', 'green', 'blue']);
+let arr = [...set];
+// ['red', 'green', 'blue']
+
+/**
+ * 当然，数组的map和filter也可以直接用于Set
+ */
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(x => x * 2));
+// 返回Set结构：{2, 4, 6}
+let set = new Set([1, 2, 3, 4, 5]);
+set = new Set([...set].filter(x => (x % 2) == 0));
+// 返回Set结构：{2, 4}
+
+/**
+ * 下面，将实现并集，交集和差集
+ */
+const a = new Set([1, 2, 3]);
+const b = new Set([1, 2, 3, 4, 5, 6, 7]);
+//并集：
+let arr1 = [...new Set(...a, ...b)];
+//差集：
+let arr2 = new Set([...a].filter(t => !b.has(t)));
+//交集：
+let arr3 = new Set([...a].filter(t => b.has(t)));
+
+/**
+ * 同步改变原来的 Set 结构，目前没有直接的方法，但有两种变通方法。
+ * 一种是利用原 Set 结构映射出一个新的结构，然后赋值给原来的 Set 结构；
+ * 另一种是利用Array.from方法。
+ */
+// 方法一
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(val => val * 2));
+// set的值是2, 4, 6
+// 方法二
+let set = new Set([1, 2, 3]);
+set = new Set(Array.from(set, val => val * 2));
+// set的值是2, 4, 6
+
