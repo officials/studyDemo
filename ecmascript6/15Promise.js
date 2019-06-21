@@ -393,13 +393,13 @@ const f = () => console.log('now');
 )();
 console.log('next');
 // now
-// nex
+// next
 
 /**
  * 基于上面的需求，同步函数同步执行，异步函数异步执行，提供Promise.try()
  */
 const f = () => console.log('now');
-Promise.prototype(f());
+Promise.try(f());
 console.log('next');
 // now 
 // next
