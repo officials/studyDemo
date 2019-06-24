@@ -5,7 +5,7 @@
  */
 
 /**
- * terator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；
+ * iterator 的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；
  * 二是使得数据结构的成员能够按某种次序排列；
  * 三是 ES6 创造了一种新的遍历命令for...of循环，Iterator 接口主要供for...of消费。
  */
@@ -260,7 +260,7 @@ iterator.next() // { value: undefined, done: true }
  */
 var something = 'hi';
 typeof something[Symbol.iterator] //function
-var iterator = something[Symbol.iterator];
+var iterator = something[Symbol.iterator]();
 iterator.next()  // { value: "h", done: false }
 iterator.next()  // { value: "i", done: false }
 iterator.next()  // { value: undefined, done: true }
@@ -436,7 +436,7 @@ for (let x of Array.from(arrayLike)) {
 }
 
 /**
- * 对于普通的对象，for of 结构不能直接使用，会报错，不、必须部署了
+ * 对于普通的对象，for of 结构不能直接使用，会报错，必须部署了
  * Iterator接口才能使用
  */
 let es6 = {
