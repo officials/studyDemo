@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- 
+	script标签定义了一下6个属性：
+	1.async：可选，表示应该立即下载脚本，但不应妨碍页面的其他操作，比如下载其他资源或等待加载其他脚本。只对外部脚本文件有效
+	2.chartset:可选。表示通过src属性指定的代码的字符集。由于大多数浏览器会忽略它的值，因此这个属性很少有人用
+	3.defer:可选。表示脚本可以延迟到文档完全被解析和显示后在再执行，只对外部脚本文件有效
+	4.language：可选。已废弃。原来用于表示代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）
+	5.src:可选。表示包含要执行代码的外部文件
+	6.type:可选。可以看成是language的替代属性(也称为MIME类型)，虽然text/javascript和text/ecmascript都已经不被推荐使用，但人们一直以来用的都还是text/javascript，实际上，服务器在传送JavaScript文件时使用的MIME类型通常是text/x-javascritp，但在type中设置这个值却可能导致脚本被忽略
+	使用<scriot>
+
+	嵌入JavaScript代码时，记住任何地方都不要出现"<script>"字符串，否则浏览器会报错
+	无论如何包含代码，只要不存在defer和async属性，浏览器都会按照<script>元素在页面中出现的先后顺序对它们依次进行解构
+
+	标签的位置：
+	按照传统的做法，所有的<script>元素都应该放在页面的<head>标签中，这种做法的目的就是把所有的外部文件的引用都放在相同的地方，可是在文档<head>元素中包含的所有JavaScript文件，意味着必须等到全部的JavaScript代码都被下载、解析和执行完以后，才能开始呈现页面的内容，对于那些需要很多JavaScript文件的页面来说，这无疑会导致浏览器明显的延迟，为了避免这个问题。现在应用程序一般都把全部的JavaScript引入放到body中
+
+	延迟脚本：
+	HTML4.0为<script>标签定义了defer属性，这个属性的用途是表明脚本执行时不会影响页面的构造，也就说说，脚本会被延迟到整个页面都解析完后再执行
+
+	异步脚本：
+	HTML5为<script>标签定义了async属性，这个属性和defer类似，都用于改变处理脚本的行为，不同的是，async告诉浏览器立即下载文件，与defer不同的是，标记为async的脚本并不保证按照执行他们的先后顺序执行
+
+	嵌入代码与外部文件
+	一般认为最好的做法就是尽可能的使用外部文件来包含JavaScript代码，使用外部文件支持一下优点：
+	1.可维护性
+	2.可缓存
+	3.适应未来
+
+	<noscript>元素
+	早期浏览器都面临一个特殊问题，即当前浏览器不支持JavaScript时如何让页面平稳的退化，对这个问题的最终解决方案就是创造一个<noscript>元素，用以在不支持JavaScript的浏览器中显示代替的内容，这个元素可以包含能够出在文档<body>中的任何HTML元素（除script元素外），请看下面这个简单的例子：
+	<body>
+		<noscript>
+			<p>本页面需要浏览器支持（启用）JavaScript</p>
+		</noscript>
+	</body>
+
+	
+
+ -->
+</body>
+</html>
