@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- 
+		此文件是一个垃圾（辣子鸡丁）前端(me),对于自己未知前端知识的记录，长路漫漫
+	 -->
+	 <script type="text/javascript">
+	 	/**
+	 		全局变量及隐式全局变量的理解
+	 	*/
+	 	//我们看下面的几行代码
+	 	var global_var=1;
+	 	global_novar=2;
+	 	(function(){
+	 		global_func=3;
+	 	})()
+	 	//上面代码，我们有三个全局变量
+	 	//通过var创建的全局变量，还有没有通过var创建的全局变量（也称隐式全局变量）
+	 	//隐式全局变量并不是真正的全局变量，隐式全局变量是全局对象的属性
+	 	//属性上可以通过delete操作删除的，我们再看
+	 	delete global_var //false
+	 	delete global_novar //true
+	 	delete global_func //true
+	 	//其实在上面的这三个变量，用var声明的变量，同样是被挂载到window下的，不能删除的原因是var声明的变量，自动配置了defineProperty(),configuarable值为false，所以不能删除，如果硬要删除，也可手动配置为true
+
+	 </script>
+
+	 <script type="text/javascript">
+	 	/**
+	 	在dom里，也有一些少为人知的HTMLCollections
+	 	*/
+	 	document.images //页面上所有的图片元素
+	 	document.links //所有a标签的元素
+	 	document.forms //所有表单
+	 	document.forms[0].elements //页面上第一个表单的所有域
+	 	//这些集合的麻烦在于它们实施查询基本文档，意味着你每次访问这些集合的长度，
+	 	//都要实时查询dom，而dom操作一般是比较昂贵的
+	 	//这就是为什么在循环时，缓存数组的长度是比较好的方式
+	 	for(var i=0;max=myArr.length;i<max;i++){
+	 		//do something
+	 	}
+	 	//在这个循环中，只检索了一次长度值
+	 	//对于for循环，我们还可以对i++来优化
+	 	i=i+1
+	 	i+=1
+	 	//我们使用上面的两种方式来代替i++，原因是++和—-促进了”过分棘手“
+
+	 </script>
+
+	 <script type="text/javascript">
+	 	/**
+	 	for...in循环
+	 	*/
+	 	//for...in循环应该用在非数组对象的遍历上，使用for...in循环也被成为”枚举“
+	 	//从技术上讲，不推荐数组使用for...in循环，因为数组的顺序不能被保证
+	 </script>
+
+	 <script type="text/javascript">
+	 	/*
+	 	return 后参数的问题
+	 	*/
+	 	var a1=function(){
+	 		return {};
+	 	}
+	 	var a2=function(){
+	 		return 
+	 		{
+
+	 		}
+	 	}
+	 	a1 //{}
+	 	a2 //undefined
+	 	//上面的代码，第一种是正常return，返回的对象跟在return后
+	 	//而第a2则是换行return 执行结果为undefined
+	 	//主要原因是return 当行后如果没有代码，return会自动在后面加;号
+	 	//所以a2相当于return ;，执行后返回undefined
+	 </script>
+
+	 <script type="text/javascript">
+	 	/**
+	 	基本包装类型：Boolean，String,Number
+	 	*/
+
+	 	var s1='some text';
+	 	var s2=s1.subString(2);
+	 	//这两行代码，我们知道基本类型不是对象，因而从逻辑上讲它们不应该有方法，但是s2确实可以调用s1的方法
+	 	//其实，在我们读取字符串中，后台会自动完成下面的处理：
+	 	//1.创建String类型的一个实例
+	 	//2.在实例上调用指定方法
+	 	//3.销毁这个实例
+	 	var s1=new String('some text');
+	 	var s2=s1.subString(2);
+	 	s1=null;
+	 	//为了更好的理解，我们看下面的这个例子：
+	 	var s1='some text';
+	 	s1.color="red";
+	 	alert(s1.color);  //undefined
+	 	//第二行代码试图给字符串添加一个color属性，当第三行代码访问s1时，color属性不见了，原因就是上面的创建的String对象被销毁了
+
+
+
+	 	//需要注意的是，我们在使用new关键字调用基本包装类型的构造函数
+	 	//与直接调用同名的转型函数是不一样的，例如：
+	 	var value='25';
+	 	var number=Number(value); //转型函数
+	 	typeof number; //"number"
+
+	 	var obj=new Number(value);  //构造函数
+	 	typeof obj;  //"object"
+
+
+
+	 	//在Boolean类型中，Boolean类型的实例重写了valueOf()方法
+	 	//返回基本类型值true或false，重写了toString()方法，返回字符串"true"和"false"
+	 	var booObject=new Boolean(true); //Object
+	 	var falseOBject=new Boolean(false); //Object
+	 	var result=falseOBject&&true;
+	 	alert(result); //true
+
+	 	var falseValue=false;
+	 	result=falseValue && true;
+	 	alert(result); //false
+	 	typeof falseValue //"boolean"
+	 	typeof falseOBject //"object"
+	 	falseValue instanceof Boolean //false
+	 	falseOBject instanceof Boolean //true
+
+
+	 	//在字符串的操作方法里，有一些可以传递负数，传递的负数将从后往前查找
+	 	alert(stringValue.slice(-3));
+		alert(stringValue.substring(-3));
+		alert(stringValue.substr(-3));
+		alert(stringValue.slice(3, -4));
+		alert(stringValue.substring(3, -4));
+		alert(stringValue.substr(3, -4));
+		//"rld" //"hello world" //"rld"
+		//"lo w" //"hel" //""(空字符串)
+		//上面的代码里，只有substring方法没有实现负数的查找，因为在substring里，将负数转换成了0
+
+
+		
+	 </script>
+</body>
+</html>

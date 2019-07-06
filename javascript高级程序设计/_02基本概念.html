@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<!-- 
+	标识符：就是指变量、函数、属性的名字，或者是函数的参数，标识符可以按照以下规则：
+	1.第一个字符必须是一个字母、下划线、或者一个美元符号($)
+	2.其他字符可以说下划线，字母，美元符号或数字
+	3.不能把关键字、保留字、true、false和null用作标识符
+
+	注释：
+	//单行注释
+	/*开头 */结尾的块级注释
+
+	break和continue:
+	break语句和continue都是立即跳出循环，但不同的是，continue退出循环后，会从循环的顶部继续执行（代码见下面js 1-1）
+
+
+-->
+<script type="text/javascript">
+ 	//1-1
+
+ 	var num = 0;
+ 	for (var i=1; i < 10; i++) {
+ 		if (i % 5 == 0) {
+ 			break; 
+ 		}
+ 			num++; 
+ 		}
+	alert(num);    //4
+
+	for (var i=1; i < 10; i++) {
+		if (i % 5 == 0) {
+			continue;
+		}
+		num++; 
+	}
+	alert(num);    //8
+
+	
+
+</script>
+</body>
+</html>
