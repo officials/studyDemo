@@ -228,10 +228,10 @@ function foo() {
     })
 }
 var id = 21;
-foo.call({ id: 42 });
+foo.call({ id: 42 });  
 
 /**
- * 箭头函数可以让setTimeout里面this指向定义是所在的作用域
+ * 箭头函数可以让setTimeout里面this指向定义时所在的作用域
  */
 function Timer() {
     this.s1 = 0;

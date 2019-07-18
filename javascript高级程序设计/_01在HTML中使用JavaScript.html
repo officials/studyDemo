@@ -12,7 +12,7 @@
 	4.language：可选。已废弃。原来用于表示代码使用的脚本语言（如JavaScript、JavaScript1.2或VBScript）
 	5.src:可选。表示包含要执行代码的外部文件
 	6.type:可选。可以看成是language的替代属性(也称为MIME类型)，虽然text/javascript和text/ecmascript都已经不被推荐使用，但人们一直以来用的都还是text/javascript，实际上，服务器在传送JavaScript文件时使用的MIME类型通常是text/x-javascritp，但在type中设置这个值却可能导致脚本被忽略
-	使用<scriot>
+	使用<script>
 
 	嵌入JavaScript代码时，记住任何地方都不要出现"<script>"字符串，否则浏览器会报错
 	无论如何包含代码，只要不存在defer和async属性，浏览器都会按照<script>元素在页面中出现的先后顺序对它们依次进行解构
